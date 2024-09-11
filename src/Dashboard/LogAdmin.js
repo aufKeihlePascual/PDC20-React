@@ -2,11 +2,24 @@ import React from "react";
 import { useState } from 'react';
 import AdminPanel from "./AdminPanel";
 
+import {useNavigate} from 'react-router-dom';
+
 function LogAdmin(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [accountType, setAccountType] = useState('');
     const [user, setUser] = useState(null);
+
+    const [loginAttempts, setloginAttempts] = useState(0); //# of login attempts
+    const [errorMessage, setErrorMessage] = useState(''); //String for error message
+    
+    const navigate = useNavigate(); //hook to navigate between pages
+
+    //to specify username and password
+    const validAdminCredentials = {
+        username: 'user123',
+        password: 'pass123'
+    };
 
     const handleLogin = () => {
         const isAdmin = accountType === 'admin';
